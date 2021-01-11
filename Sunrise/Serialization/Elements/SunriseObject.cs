@@ -81,7 +81,7 @@ namespace Sunrise
 
                 string name = buffer.ReadString(nameLength);
 
-                obj.Children[name] = SunriseDeserializer.Deserialize(buffer, contentLength);
+                obj.Children[name] = SunriseSerializer.Deserialize(buffer, contentLength);
             }
 
             return obj;

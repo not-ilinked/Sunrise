@@ -34,10 +34,8 @@ namespace Sunrise
 
         public SunriseToken this[string name]
         {
-            get
-            {
-                return Children[name];
-            }
+            get { return Children[name]; }
+            set { Children[name] = value; }
         }
 
         public override byte[] Serialize()
@@ -83,7 +81,7 @@ namespace Sunrise
 
                 string name = buffer.ReadString(nameLength);
 
-                obj.Children[name] = SunriseDeserializer.Deserialize(buffer, contentLength);
+                obj.Children[name] = SunriseSerializer.Deserialize(buffer, contentLength);
             }
 
             return obj;

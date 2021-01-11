@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sunrise
+﻿namespace Sunrise
 {
     // Structure
     // 1 byte (type)

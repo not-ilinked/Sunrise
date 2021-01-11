@@ -1,9 +1,18 @@
-﻿using System;
+﻿using Sunrise.Mapping;
+using System;
 
 namespace Sunrise
 {
-    public static class SunriseDeserializer
+    public static class SunriseSerializer
     {
+        public static byte[] Serialize(object data)
+        {
+            if (typeof(SunriseToken).IsAssignableFrom(data.GetType()))
+                return ((SunriseToken)data).Serialize();
+            else
+                return SunriseMapper.Convert(data).Serialize();
+        }
+
         internal static SunriseToken Deserialize(SunriseBuffer buffer, int count)
         {
             int endIndex = buffer.Offset + count;
@@ -23,9 +32,9 @@ namespace Sunrise
             }
         }
 
-        public static SunriseToken Deserialize(byte[] buffer)
+        public static T Deserialize<T>(byte[] buffer)
         {
-            return Deserialize(new SunriseBuffer(buffer), buffer.Length);
+            return (T)SunriseMapper.Map(Deserialize(new SunriseBuffer(buffer), buffer.Length), typeof(T));
         }
     }
 }

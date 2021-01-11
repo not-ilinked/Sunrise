@@ -66,7 +66,7 @@ namespace Sunrise
             {
                 int length = buffer.ReadInt();
 
-                arr.Items.Add(SunriseDeserializer.Deserialize(buffer, length));
+                arr.Items.Add(SunriseSerializer.Deserialize(buffer, length));
             }
 
             return arr;

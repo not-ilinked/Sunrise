@@ -42,14 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\SunriseMapper.cs" />
+    <Compile Include="Mapping\SunrisePropertyAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SunriseArray.cs" />
-    <Compile Include="SunriseBuffer.cs" />
-    <Compile Include="SunriseDeserializer.cs" />
-    <Compile Include="SunriseObject.cs" />
-    <Compile Include="SunriseToken.cs" />
-    <Compile Include="SunriseType.cs" />
-    <Compile Include="SunriseValue.cs" />
+    <Compile Include="Serialization\Elements\SunriseArray.cs" />
+    <Compile Include="Serialization\SunriseBuffer.cs" />
+    <Compile Include="Serialization\Elements\SunriseObject.cs" />
+    <Compile Include="Serialization\Elements\SunriseToken.cs" />
+    <Compile Include="Serialization\Elements\SunriseType.cs" />
+    <Compile Include="Serialization\Elements\SunriseValue.cs" />
+    <Compile Include="Serialization\SunriseSerializer.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
