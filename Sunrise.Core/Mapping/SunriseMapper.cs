@@ -46,7 +46,9 @@ namespace Sunrise.Mapping
         {
             var type = data.GetType();
 
-            if (type.IsArray)
+            if (type.BaseType == typeof(SunriseToken))
+                return (SunriseToken)data;
+            else if (type.IsArray)
             {
                 var arr = new SunriseArray();
 
@@ -60,19 +62,35 @@ namespace Sunrise.Mapping
                 var obj = new SunriseObject();
 
                 foreach (var pair in GetProperties(type))
-                    obj.Children[pair.Key] = Convert(pair.Value.GetValue(data));
+                {
+                    var value = pair.Value.GetValue(data);
+
+                    if (value != null)
+                        obj.Children[pair.Key] = Convert(value);
+                }
 
                 return obj;
             }
+            else if (type.BaseType == typeof(Enum))
+                return Convert((int)data);
             else
             {
                 if (IsNumber(data)) return new SunriseValue(BitConverter.GetBytes((dynamic)data));
                 else return new SunriseValue(Encoding.UTF8.GetBytes(data.ToString()));
             }
         }
-        
+
         public static object Map(SunriseToken token, Type t)
         {
+            if (t == typeof(SunriseToken))
+                return token;
+            else if (t == typeof(SunriseValue))
+                return (SunriseValue)token;
+            else if (t == typeof(SunriseObject))
+                return (SunriseObject)token;
+            else if (t == typeof(SunriseArray))
+                return (SunriseArray)token;
+
             switch (token.Type)
             {
                 case SunriseType.Array:
@@ -102,6 +120,12 @@ namespace Sunrise.Mapping
 
                     if (t == typeof(string))
                         return Encoding.UTF8.GetString(sunriseValue.Data);
+
+                    if (t.BaseType == typeof(Enum))
+                    {
+                        var values = Enum.GetValues(t);
+                        return values.GetValue(BitConverter.ToInt32(sunriseValue.Data, 0)); // this might cause issues
+                    }
 
                     foreach (var method in typeof(BitConverter).GetMethods())
                     {

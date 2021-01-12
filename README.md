@@ -2,8 +2,6 @@
 Sunrise is a simple and efficient object -> byte serializer/deserializer.<br>
 Format wise it's somewhat similar to the MP4 container but is also inspired a lot from JSON.<br>
 
-Currently the only way of serializing would be to create the Sunrise objects yourself, tho i can see myself writing something like Json.NET's "JsonProperty" attribute.
-
 # Usage
 ### Serializing
 ```cs
