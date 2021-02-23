@@ -52,6 +52,7 @@
     <Compile Include="Serialization\Elements\SunriseType.cs" />
     <Compile Include="Serialization\Elements\SunriseValue.cs" />
     <Compile Include="Serialization\SunriseSerializer.cs" />
+    <Compile Include="SunriseException.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

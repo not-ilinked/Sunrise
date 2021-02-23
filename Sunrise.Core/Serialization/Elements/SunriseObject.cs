@@ -38,7 +38,7 @@ namespace Sunrise
             set { Children[name] = value; }
         }
 
-        public override byte[] Serialize()
+        internal override byte[] Serialize()
         {
             List<byte[]> serializedChildren = new List<byte[]>();
 

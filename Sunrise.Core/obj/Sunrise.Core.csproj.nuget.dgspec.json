@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\edhbu\\source\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj": {}
+    "D:\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\edhbu\\source\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj": {
+    "D:\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj": {
       "version": "1.0.1",
       "restore": {
-        "projectUniqueName": "C:\\Users\\edhbu\\source\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj",
+        "projectUniqueName": "D:\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj",
         "projectName": "Sunrise",
-        "projectPath": "C:\\Users\\edhbu\\source\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj",
+        "projectPath": "D:\\repos\\Sunrise\\Sunrise.Core\\Sunrise.Core.csproj",
         "packagesPath": "C:\\Users\\edhbu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\edhbu\\source\\repos\\Sunrise\\Sunrise.Core\\obj\\",
+        "outputPath": "D:\\repos\\Sunrise\\Sunrise.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\edhbu\\AppData\\Roaming\\NuGet\\NuGet.Config",

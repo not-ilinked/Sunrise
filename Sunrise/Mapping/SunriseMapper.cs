@@ -44,6 +44,9 @@ namespace Sunrise.Mapping
 
         public static SunriseToken Convert(object data)
         {
+            if (data == null)
+                return new SunriseValue(new byte[0]);
+
             var type = data.GetType();
 
             if (type.BaseType == typeof(SunriseToken))
@@ -80,22 +83,19 @@ namespace Sunrise.Mapping
             }
         }
 
-        public static object Map(SunriseToken token, Type t)
+        internal static object Map(SunriseToken token, Type t)
         {
-            if (t == typeof(SunriseToken))
+            if (token.GetType() == typeof(SunriseValue) && ((SunriseValue)token).Data.Length == 0)
+                return null;
+
+            if (t.BaseType == typeof(SunriseToken) || t == typeof(SunriseToken))
                 return token;
-            else if (t == typeof(SunriseValue))
-                return (SunriseValue)token;
-            else if (t == typeof(SunriseObject))
-                return (SunriseObject)token;
-            else if (t == typeof(SunriseArray))
-                return (SunriseArray)token;
 
             switch (token.Type)
             {
                 case SunriseType.Array:
                     if (!t.IsArray)
-                        throw new ArgumentException("Type mismatch on array");
+                        throw new SunriseException(new ArgumentException("Type mismatch on array"));
 
                     var items = ((SunriseArray)token).Items;
 
@@ -136,10 +136,15 @@ namespace Sunrise.Mapping
                         }
                     }
 
-                    throw new TypeAccessException("Could not find a method to convert value");
+                    throw new SunriseException(new TypeAccessException("Could not find a method to convert value"));
                 default:
-                    throw new ArgumentException("Unexpected Sunrise type");
+                    throw new SunriseException(new ArgumentException("Unexpected Sunrise type"));
             }
+        }
+
+        public static T Map<T>(SunriseToken token)
+        {
+            return (T)Map(token, typeof(T));
         }
     }
 }

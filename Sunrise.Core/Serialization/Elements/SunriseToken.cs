@@ -9,6 +9,6 @@
             Type = type;
         }
 
-        public abstract byte[] Serialize();
+        internal abstract byte[] Serialize();
     }
 }

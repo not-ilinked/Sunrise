@@ -12,7 +12,7 @@
             Data = data;
         }
 
-        public override byte[] Serialize()
+        internal override byte[] Serialize()
         {
             SunriseBuffer buffer = new SunriseBuffer(new byte[1 + Data.Length]);
             buffer.WriteByte((byte)Type);

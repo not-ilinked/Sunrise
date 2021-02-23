@@ -28,7 +28,7 @@ namespace Sunrise
             set { Items[index] = value; }
         }
 
-        public override byte[] Serialize()
+        internal override byte[] Serialize()
         {
             List<byte[]> serializedChildren = new List<byte[]>();
 
@@ -48,7 +48,6 @@ namespace Sunrise
                 itemLength += child.Length;
 
             SunriseBuffer result = new SunriseBuffer(new byte[1 + itemLength]);
-
             result.WriteByte((byte)Type);
 
             foreach (var child in serializedChildren)
